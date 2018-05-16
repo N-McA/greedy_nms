@@ -1,6 +1,6 @@
 
 # distutils: language = c++
-# distutils: sources = ./box_clipper/greedy_nms_impl.cpp
+# distutils: sources = ./greedy_nms/greedy_nms_impl.cpp
 
 import cython
 
@@ -12,7 +12,7 @@ cdef extern void hello()
 cdef extern void cpp_greedy_nms(float *coords, int *output, int length, float thresh)
 
 
-def hello_cpp():
+def _hello_cpp():
     '''
     Prints hello from C++, hopefully.
     '''
@@ -22,7 +22,7 @@ def hello_cpp():
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
-def greedy_nms_worker(
+def _greedy_nms_worker(
         np.ndarray[float, ndim=1, mode="c"] input not None, 
         np.ndarray[int, ndim=1, mode="c"] output not None,
         float threshold
@@ -42,7 +42,7 @@ def greedy_nms(input_boxes, threshold):
 
     assert len(result) * 8 == len(flat_boxes)
 
-    greedy_nms_worker(flat_boxes, result, threshold)
+    _greedy_nms_worker(flat_boxes, result, threshold)
     return result
 
 

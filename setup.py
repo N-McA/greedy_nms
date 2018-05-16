@@ -7,7 +7,7 @@ from distutils.extension import Extension
 
 setup(ext_modules=cythonize([Extension(
    name="greedy_nms",
-   sources=["box_clipper/greedy_nms.pyx"],
+   sources=["greedy_nms/greedy_nms.pyx"],
    include_dirs=[numpy.get_include()],
    language="c++",
    extra_compile_args=["-std=c++11"],

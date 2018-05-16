@@ -4,7 +4,7 @@ import numpy as np
 
 def test_1():
     import greedy_nms
-    greedy_nms.hello_cpp()
+    greedy_nms._hello_cpp()
     print("Test 1 Passed")
 
 
